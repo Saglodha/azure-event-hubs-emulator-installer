@@ -17,7 +17,7 @@ steps:
   displayName: 'Install Docker'
 
 - script: |
-    curl -L https://raw.githubusercontent.com/Azure/azure-event-hubs-emulator-installer/main/Docker-Compose-Template/docker-compose-default.yml -o docker-compose-default.yml
+    curl -L https://raw.githubusercontent.com/Saglodha/azure-event-hubs-emulator-installer/main/docker-pipeline.yml -o docker-compose-default.yml
   displayName: 'Download Docker Compose file'
 
 - script: |
