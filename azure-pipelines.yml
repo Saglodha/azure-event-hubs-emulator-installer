@@ -25,4 +25,4 @@ steps:
       ACCEPT_EULA=Y
     projectName: 'microsoft-azure-eventhubs'
     action: 'Run a Docker Compose command'
-    dockerComposeCommand: 'docker compose -f  https://github.com/Azure/azure-event-hubs-emulator-installer/blob/main/Docker-Compose-Template/docker-compose-default.yml up -d'
+    dockerComposeCommand: 'docker compose -f  Docker-Compose-Template/docker-compose-default.yml up -d'
