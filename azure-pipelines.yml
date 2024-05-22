@@ -1,28 +1,23 @@
-
-
 trigger:
-- main
+- master
 
-resources:
-- repo: self
+pool:
+  vmImage: 'ubuntu-latest'
 
-variables:
-  tag: '$(Build.BuildId)'
+steps:
+- checkout: self
 
-stages:
-- stage: Build
-  displayName: Build image
-  jobs:
-  - job: Build
-    displayName: Build
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-    # Docker
-    - task: DockerCompose@0
-      inputs: 
-        containerregistrytype: 'Container Registry'
-        dockerComposeFile: 'Docker-Compose-Template/docker-compose-default.yml'
-        action: 'Run a Docker Compose command'
-# Build a Docker image
-# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+- script: |
+    sudo apt-get update
+    sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+    sudo apt-get update
+    sudo apt-get install docker-ce
+  displayName: 'Install Docker'
+
+- task: DockerCompose@0
+  inputs:
+    containerregistrytype: 'Container Registry'
+    dockerComposeFile: 'Docker-Compose-Template/docker-compose-default.yml'
+    dockerComposeCommand: 'up -d'
