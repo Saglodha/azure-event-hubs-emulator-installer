@@ -24,12 +24,6 @@ steps:
     curl -L https://github.com/Azure/azure-event-hubs-emulator-installer/blob/main/EventHub-Emulator/Config/Config.json -o Config.json
   displayName: 'Download Config file'
 
-- script: |
-    echo "Printing the contents of the file:"
-    cat docker-compose-default.yml
-    echo "Halting the pipeline intentionally."
-    exit 1
-  displayName: 'Print File Contents and Halt Pipeline'
 
 - script: |
     echo "##vso[task.setvariable variable=CONFIG_PATH;]$(System.DefaultWorkingDirectory)/Config.json"
