@@ -17,7 +17,7 @@ steps:
   displayName: 'Install Docker'
 
 - script: |
-    curl -L https://github.com/Saglodha/azure-event-hubs-emulator-installer/blob/main/docker-pipeline.yml -o docker-compose-default.yml
+    curl -L https://github.com/Azure/azure-event-hubs-emulator-installer/blob/main/Docker-Compose-Template/docker-compose-default.yml -o docker-compose-default.yml
   displayName: 'Download Docker Compose file'
 
 - script: |
@@ -33,9 +33,6 @@ steps:
   inputs:
     containerregistrytype: 'Container Registry'
     dockerComposeFile: 'docker-compose-default.yml'
-    dockerComposeFileArgs: |
-      CONFIG_PATH=$(System.DefaultWorkingDirectory)/Config.json
-      ACCEPT_EULA=Y
     projectName: 'microsoft-azure-eventhubs'
     action: 'Run a Docker Compose command'
     dockerComposeCommand: 'docker compose -f docker-compose-default.yml up -d'
