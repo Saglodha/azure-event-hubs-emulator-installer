@@ -16,6 +16,11 @@ steps:
     sudo apt-get install docker-ce
   displayName: 'Install Docker'
 
+- script: |
+    echo "##vso[task.setvariable variable=CONFIG_PATH;]https://github.com/Azure/azure-event-hubs-emulator-installer/blob/main/EventHub-Emulator/Config/Config.json"
+    echo "##vso[task.setvariable variable=ACCEPT_EULA;]Y"
+  displayName: 'Set Environment Variables'
+
 - task: DockerCompose@0
   inputs:
     containerregistrytype: 'Container Registry'
