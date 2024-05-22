@@ -16,13 +16,13 @@ steps:
     sudo apt-get install docker-ce
   displayName: 'Install Docker'
 
-- script: |
-    echo "##vso[task.setvariable variable=CONFIG_PATH;]https://github.com/Azure/azure-event-hubs-emulator-installer/blob/main/EventHub-Emulator/Config/Config.json"
-    echo "##vso[task.setvariable variable=ACCEPT_EULA;]Y"
-  displayName: 'Set Environment Variables'
-
 - task: DockerCompose@0
   inputs:
     containerregistrytype: 'Container Registry'
-    dockerComposeFile: 'Docker-Compose-Template/docker-compose-default.yml'
-    dockerComposeCommand: 'up -d'
+    dockerComposeFile: 'https://github.com/Azure/azure-event-hubs-emulator-installer/blob/main/Docker-Compose-Template/docker-compose-default.yml'
+    dockerComposeFileArgs: |
+      CONFIG_PATH=https://github.com/Azure/azure-event-hubs-emulator-installer/blob/main/EventHub-Emulator/Config/Config.json
+      ACCEPT_EULA=Y
+    projectName: 'microsoft-azure-eventhubs'
+    action: 'Run a Docker Compose command'
+    dockerComposeCommand: 'docker compose -f  https://github.com/Azure/azure-event-hubs-emulator-installer/blob/main/Docker-Compose-Template/docker-compose-default.yml up -d'
