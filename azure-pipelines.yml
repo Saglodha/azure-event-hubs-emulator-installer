@@ -19,10 +19,10 @@ steps:
 - task: DockerCompose@0
   inputs:
     containerregistrytype: 'Container Registry'
-    dockerComposeFile: 'Docker-Compose-Template/docker-compose-default.yml'
+    dockerComposeFile: '**/docker-compose.yml'
     dockerComposeFileArgs: |
-      CONFIG_PATH=https://github.com/Azure/azure-event-hubs-emulator-installer/blob/main/EventHub-Emulator/Config/Config.json
-      ACCEPT_EULA=Y
+      CONFIG_PATH=https://github.com/Azure/azure-event-hubs-emulator-installer/blob/main/EventHub-Emulator/Config/Config.json|
+            ACCEPT_EULA=Y
     projectName: 'microsoft-azure-eventhubs'
     action: 'Run a Docker Compose command'
     dockerComposeCommand: 'up -d'
