@@ -37,4 +37,4 @@ steps:
     dockerComposeFile: '**/docker-compose-default-saglodha-1.yml'
     projectName: 'microsoft-azure-eventhubs'
     action: 'Run a Docker Compose command'
-    dockerComposeCommand: 'docker compose -f docker-compose-default.yml up -d'
+    dockerComposeCommand:  'version'
